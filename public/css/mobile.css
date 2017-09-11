@@ -1,0 +1,244 @@
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+}
+
+/* Portrait */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Portrait */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Portrait */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 414px)
+and (max-device-width: 736px)
+and (-webkit-min-device-pixel-ratio: 3) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Portrait */
+@media only screen
+and (min-device-width: 414px)
+and (max-device-width: 736px)
+and (-webkit-min-device-pixel-ratio: 3)
+and (orientation: portrait) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 414px)
+and (max-device-width: 736px)
+and (-webkit-min-device-pixel-ratio: 3)
+and (orientation: landscape) {
+    #register .form-div {
+        width: 100%;
+        margin: 0 auto;
+    }
+    figure {
+        width: 100%;
+        border-radius: 2px;
+    }
+    .body h2 {
+        color: white;
+        font-size: 1.5rem;
+    }
+}

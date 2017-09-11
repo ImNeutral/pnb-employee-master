@@ -1,0 +1,224 @@
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+.icon-section {
+	margin: 0 0 3em;
+	clear: both;
+	overflow: hidden;
+}
+.icon-container {
+	width: 240px;
+	padding: .7em 0;
+	float: left;
+	position: relative;
+	text-align: left;
+}
+input.date-picker {
+	font-size: 14px !important;
+}
+.icon-container [class^="ti-"],
+.icon-container [class*=" ti-"] {
+	color: #000;
+	position: absolute;
+	margin-top: 3px;
+	transition: .3s;
+}
+.icon-container:hover [class^="ti-"],
+.icon-container:hover [class*=" ti-"] {
+	font-size: 2.2em;
+	margin-top: -5px;
+}
+.icon-container:hover .icon-name {
+	color: #000;
+}
+.icon-name {
+	color: #aaa;
+	margin-left: 35px;
+	font-size: .8em;
+	transition: .3s;
+}
+.icon-container:hover .icon-name {
+	margin-left: 45px;
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px
+}
+.sidebar .nav > li.active-pro{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+.sidebar .nav > li.active-pro a{
+    background: rgba(255, 255, 255, 0.14);
+    opacity: 1;
+    color: #FFFFFF;
+}
+
+.table-upgrade td:nth-child(2),
+.table-upgrade td:nth-child(3){
+    text-align: center;
+}
+
+.card .numbers {
+	font-size: 1.5em;
+	text-align: right;
+}
+
+.withdraw-button button.right {
+	float: right;
+}
+.withdraw-button button.left {
+	float: left;
+	display: none;
+}
+.withdraw-button button:hover, 	.referral-link .right:hover, .referral-link-mobile button:hover {
+	background-color: #f85019;
+	color: #FFFFFF;
+	opacity: 1;
+}
+
+.withdraw-button button, .referral-link-mobile button {
+	border: 0 !important;
+	background-color: #f96332;
+	color: #FFFFFF;
+	opacity: 0.8;
+}
+
+.referral-link .card {
+	border-radius: 24px;
+}
+
+.referral-link .content {
+	padding: 0;
+	display: flex;
+}
+
+.referral-link div.left {
+	border-right: 1px solid rgb(244, 243, 239);
+	width: 20%;
+	padding: 18px 15px 10px 15px;
+	float: left;
+	text-align: center;
+}
+
+.referral-link div input  {
+	font-size: 1.5em;
+	border-right: 1px solid black;
+	width: 65%;
+	padding: 15px 15px 10px 15px;
+	float: left;
+	display: block;
+	border: 0;
+}
+
+.referral-link div.right {
+	border-left: 1px solid rgb(244, 243, 239);
+	width: 20%;
+	padding: 18px 15px 10px 15px;
+	float: left;
+	font-size: 1.5em;
+	background-color: #f85019;
+	color: #FFFFFF;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	text-align: center;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.referral-link-mobile {
+	text-align: center;
+	display: none;
+}
+
+.user-infor h3{
+	font-size: 1.25em;
+	font-weight: 600;
+	line-height: 1.2em;
+}
+
+.breadcrumb-content {
+	padding-top: 0 !important;
+}
+
+.earnings {
+	color: green;
+}
+
+.breadcrumb {
+	margin-bottom: 0;
+	background-color: transparent;
+}
+
+.referral-link-mobile .top h4{
+	margin: 1rem;
+}
+
+.referral-link-mobile .center input{
+	font-size: 1em;
+	border: 1px solid #f1eae0;
+	padding: 15px 15px 10px 15px;
+	display: block;
+	width: 100%;
+	text-align: center;
+	border-right: 0;
+	border-left: 0;
+	border-radius: 25px;
+	border-left-width: 15px;
+}
+
+.referral-link-mobile .bottom {
+	margin: 1rem;
+}
+
+.referral-link-mobile button {
+	width: 100%
+}
+
+.earnings-div .left {
+	display: none;
+	text-align: left;
+}
+
+.earnings-div .right {
+	text-align: right;
+	margin: 1rem;
+	margin-left: 0;
+}
+
+@media (max-width: 991px) {
+	.w100 {
+		width: 100% !important;
+	}
+	.withdraw-button button.left {
+		display: block !important;
+		margin: 1rem;
+		margin-left: 0;
+	}
+	.withdraw-button button.right {
+		display: none !important;
+	}
+
+	.referral-link-mobile, .earnings-div .left {
+		display: block !important;
+	}
+
+	.referral-link, .earnings-div .right {
+		display: none !important;
+	}
+
+
+}
