@@ -139,15 +139,15 @@
                                     <label for="last-name" class="col-sm-2 control-label">Account Access</label>
                                     <div class="col-sm-8">
                                         <div data-toggle="buttons">
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('employee', old('account_access'))? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ old('account_access') && in_array('employee', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ old('account_access') && in_array('employee', old('account_access'))? 'checked' : '' }}>
                                                 EMPLOYEE
                                             </label>
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('inventory', old('account_access'))? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ old('account_access') && in_array('inventory', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ old('account_access') && in_array('inventory', old('account_access'))? 'checked' : '' }}>
                                                 INVENTORY
                                             </label>
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('waiter', old('account_access'))? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ old('account_access') && in_array('waiter', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ old('account_access') && in_array('waiter', old('account_access'))? 'checked' : '' }}>
                                                 WAITER
                                             </label>
