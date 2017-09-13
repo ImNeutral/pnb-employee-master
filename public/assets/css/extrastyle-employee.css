@@ -8,6 +8,9 @@ label {
     color: black !important;
 }
 
+.toggleButtonsRadius {
+    border-radius: 0px !important;
+}
 
 
 

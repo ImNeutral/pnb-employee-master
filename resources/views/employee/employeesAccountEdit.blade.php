@@ -66,25 +66,8 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-2">
-                                        <a href="#" id="change-password"><u>Change Password</u></a>
-                                        <a href="#" id="change-password-cancel" class="hidden"><u>Cancel Change Password</u></a>
-                                        <input type="hidden" id="change-password-status" name="change_password_status" value="0">
-                                    </div>
-                                </div>
-
-                                <div id="passwords" class="hidden">
-                                    <div class="form-group">
-                                        <label for="last-name" class="col-sm-2 control-label">New Password</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="password" name="password"  placeholder="New Password">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="last-name" class="col-sm-2 control-label">Confirm Password</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="password" name="password2"  placeholder="Confirm Password">
-                                        </div>
+                                        <a href="#" id="change-password"><u>Get Change Password Code</u></a>
+                                        <p id="change-password-code" class="hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please wait....</p>
                                     </div>
                                 </div>
 
@@ -103,15 +86,15 @@
                                     <label for="last-name" class="col-sm-2 control-label">Account Access</label>
                                     <div class="col-sm-8">
                                         <div data-toggle="buttons">
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ isset($accessType) && in_array('employee', $accessType)? 'checked' : '' }}>
                                                 EMPLOYEE
                                             </label>
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ isset($accessType) && in_array('inventory', $accessType)? 'checked' : '' }}>
                                                 INVENTORY
                                             </label>
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }}">
+                                            <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }} toggleButtonsRadius">
                                                 <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ isset($accessType) && in_array('waiter', $accessType)? 'checked' : '' }}>
                                                 WAITER
                                             </label>
@@ -204,16 +187,21 @@
 
     <script type="text/javascript">
         $('#change-password').click(function(){
-            $(this).addClass('hidden');
-            $('#change-password-cancel').removeClass('hidden');
-            $('#passwords').removeClass('hidden');
-            $('#change-password-status').val(1);
-        });
-        $('#change-password-cancel').click(function(){
-            $(this).addClass('hidden');
-            $('#change-password').removeClass('hidden');
-            $('#passwords').addClass('hidden');
-            $('#change-password-status').val(0);
+            $changePasswordCode = $('#change-password-code');
+            $changePasswordCode.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please wait....');
+            $changePasswordCode.removeClass('hidden');
+
+            $.ajax({
+                url : '/employees-account/getChangePasswordCode/' + {{ $account->employee_id }},
+                type: 'GET',
+                success: function (response) {
+                    $changePasswordCode.html('Use this code: ' + response['code']);
+                },
+                error: function (response) {
+                }
+            })
+
+
         });
     </script>
 @endsection

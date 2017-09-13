@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
 {
     public function index(Request $request)
-    { 
+    {
         $page       = $request->input('page') > '0'? $request->input('page') : 1;
         $search     = $request->input('search') > ' '? $request->input('search') : '';
         $key        = $request->input('key');
@@ -227,6 +227,14 @@ class EmployeeController extends Controller
             $this->insertAccessType($account, $request->input('account_access'));
             return redirect('/employees-account/' . $employee->id . '/edit')->with(['message' => 'Successfully created employee account!']);
         }
+    }
+
+    public function getChangePasswordCode($employee_id){
+        $employee = Employee::find($employee_id);
+        $code     = mt_rand (100000,999999);
+        $employee->account->change_password_code = bcrypt($code);
+        $employee->account->save();
+        return response()->json(['code' => $code]);
     }
 
     public function accessTypeToArray($accessTypes){

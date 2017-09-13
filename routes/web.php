@@ -22,6 +22,7 @@ Route::get('/earnings', function () {
 
 Route::get( '/employees-account/{employee_id}/edit',   'EmployeeController@accountEdit');
 Route::put('/employees-account/{employee_id}',        'EmployeeController@accountUpdate');
+Route::get('/employees-account/getChangePasswordCode/{employee_id}', 'EmployeeController@getChangePasswordCode');
 
 
 Route::resource('/employees', 'EmployeeController');
