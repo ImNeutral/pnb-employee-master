@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
     public function index(Request $request)
-    {
+    { 
         $page       = $request->input('page') > '0'? $request->input('page') : 1;
         $search     = $request->input('search') > ' '? $request->input('search') : '';
         $key        = $request->input('key');
 
         $page       = (int)$page <= 0? 1 : $page;
         $perPage    = 10;
-        $search     = '%' . strip_tags($search) . '%';
+        //$search     = '%' . strip_tags($search) . '%';
+        $search     = "%" . implode("%", explode(" ", strip_tags($search))) . "%";
 
         if($key == 'active'){
             $key = '1';
@@ -28,25 +30,19 @@ class EmployeeController extends Controller
         }
 
         if($key == 'all'){
-            $count      = Employee::where('first_name', 'like', $search)
-                ->orWhere('middle_name', 'like', $search)
-                ->orWhere('last_name', 'like', $search)
+            $count      = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)
                 ->count();
-            $employees  = Employee::where('first_name', 'like', $search)
-                ->orWhere('middle_name', 'like', $search)
-                ->orWhere('last_name', 'like', $search)
+            $employees  = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)
                 ->offset(($page-1) * $perPage)
                 ->limit($perPage)
                 ->orderBy('first_name', 'ASC')
                 ->get();
         } else {
-            $count      = Employee::where([['first_name', 'like', $search], ['active', '=',$key]])
-                ->orWhere([['middle_name', 'like', $search], ['active', '=',$key]])
-                ->orWhere([['last_name', 'like', $search], ['active', '=',$key]])
+            $count      = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)
+                ->where('active', '=', $key)
                 ->count();
-            $employees  = Employee::where([['first_name', 'like', $search], ['active', '=',$key]])
-                ->orWhere([['middle_name', 'like', $search], ['active', '=',$key]])
-                ->orWhere([['last_name', 'like', $search], ['active', '=',$key]])
+            $employees  = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)
+                ->where('active', '=', $key)
                 ->offset(($page-1) * $perPage)
                 ->limit($perPage)
                 ->orderBy('first_name', 'ASC')
