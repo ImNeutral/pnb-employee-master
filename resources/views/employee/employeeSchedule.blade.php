@@ -30,28 +30,90 @@
 
                     <div class="content">
                         <div class="container">
+
                             <dl class="dl-horizontal">
                                 <dt>Monday</dt>
-                                <dd id="monday">6am-11am, 1pm-5pm</dd>
+                                <dd id="monday">
+                                    {{ empty($monday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $monday->day_morning_from), 'h:i a') }}
+                                        -
+                                    {{ empty($monday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $monday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($monday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $monday->day_afternoon_from), 'h:i a') }}
+                                        -
+                                    {{ empty($monday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $monday->day_afternoon_to), 'h:i a') }}
+                                </dd>
 
                                 <dt>Tuesday</dt>
-                                <dd id="tuesday">6am-11am, 1pm-5pm</dd>
+                                <dd id="tuesday">
+                                    {{ empty($tuesday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $tuesday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($tuesday->day_morning_to)? '--:--' :   date_format(date_create("0000-00-00" . $tuesday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($tuesday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $tuesday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($tuesday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $tuesday->day_afternoon_to), 'h:i a') }}
+                                </dd>
+
 
                                 <dt>Wednesday</dt>
-                                <dd id="wednesday">6am-11am, 1pm-5pm</dd>
+                                <dd id="wednesday">
+                                    {{ empty($wednesday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $wednesday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($wednesday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $wednesday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($wednesday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $wednesday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($wednesday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $wednesday->day_afternoon_to), 'h:i a') }}
+                                </dd>
 
                                 <dt>Thursday</dt>
-                                <dd id="thursday">6am-11am, 1pm-5pm</dd>
+                                <dd id="thursday">
+                                    {{ empty($thursday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $thursday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($thursday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $thursday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($thursday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $thursday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($thursday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $thursday->day_afternoon_to), 'h:i a') }}
+                                </dd>
 
                                 <dt>Friday</dt>
-                                <dd id="friday">6am-11am, 1pm-5pm</dd>
+                                <dd id="friday">
+                                    {{ empty($friday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $friday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($friday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $friday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($friday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $friday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($friday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $friday->day_afternoon_to), 'h:i a') }}
+                                </dd>
 
                                 <dt>Saturday</dt>
-                                <dd id="saturday">-- - --, -- - --</dd>
+                                <dd id="saturday">
+                                    {{ empty($saturday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $saturday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($saturday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $saturday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($saturday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $saturday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($saturday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $saturday->day_afternoon_to), 'h:i a') }}
+                                </dd>
 
                                 <dt>Sunday</dt>
-                                <dd id="sunday">-- - --, -- - --</dd>
-
+                                <dd id="sunday">
+                                    {{ empty($sunday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $sunday->day_morning_from), 'h:i a') }}
+                                    -
+                                    {{ empty($sunday->day_morning_to)? '--:--' : date_format(date_create("0000-00-00" . $sunday->day_morning_to), 'h:i a') }}
+                                    ,
+                                    {{ empty($sunday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $sunday->day_afternoon_from), 'h:i a') }}
+                                    -
+                                    {{ empty($sunday->day_afternoon_from)? '--:--' : date_format(date_create("0000-00-00" . $sunday->day_afternoon_to), 'h:i a') }}
+                                </dd>
+                                <br />
+                                <dd>
+                                    <a href="{{ url('/employee') }}"><button class="btn btn-danger btn-sm">Back</button></a>
+                                    <a href="{{ url('/employee/schedule/'. $employee_id .'/edit') }}"><button class="btn btn-info btn-sm" style="margin-left: 50px;">Edit</button></a>
+                                </dd>
                             </dl>
                         </div>
                     </div>

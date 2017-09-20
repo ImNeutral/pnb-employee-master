@@ -1,7 +1,7 @@
 @extends('includes.dashboard-header')
 @include('vendor.employee.view-employee-details')
 @section('title')
-    Employee | Schedule
+    Employee | Schedule | Edit
 @endsection
 @section('extrastyle')
     <link href="{{ asset('assets/css/extrastyle-employee.css') }}" rel="stylesheet" />
@@ -22,7 +22,8 @@
                                 <ol class="breadcrumb">
                                     <li><a href="{{ url('/') }}">Home</a></li>
                                     <li><a href="{{ url('/employee') }}">Employees</a></li>
-                                    <li class="active">Schedule</li>
+                                    <li><a href="{{ url('/employee/schedule/' . $employee_id) }}">Schedule</a></li>
+                                    <li class="active">Edit</li>
                                 </ol>
                             </div>
                         </div>
@@ -30,29 +31,138 @@
 
                     <div class="content">
                         <div class="container">
-                            <dl class="dl-horizontal">
-                                <dt>Monday</dt>
-                                <dd id="monday"><input type="number" name="mondayMorning"> , 1pm-5pm</dd>
 
-                                <dt>Tuesday</dt>
-                                <dd id="tuesday">6am-11am, 1pm-5pm</dd>
+                            <form action="{{ url('/employee/schedule/' . $employee_id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <dl class="dl-horizontal">
+                                    <dt>Monday</dt>
+                                    <dd id="monday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="mondayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $monday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="mondayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $monday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="mondayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $monday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="mondayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $monday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
+                                    <dt>Tuesday</dt>
+                                    <dd id="tuesday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="tuesdayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $tuesday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="tuesdayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $tuesday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="tuesdayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $tuesday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="tuesdayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $tuesday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                                <dt>Wednesday</dt>
-                                <dd id="wednesday">6am-11am, 1pm-5pm</dd>
+                                    <dt>Wednesday</dt>
+                                    <dd id="wednesday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="wednesdayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $wednesday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="wednesdayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $wednesday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="wednesdayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $wednesday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="wednesdayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $wednesday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                                <dt>Thursday</dt>
-                                <dd id="thursday">6am-11am, 1pm-5pm</dd>
+                                    <dt>Thursday</dt>
+                                    <dd id="thursday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="thursdayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $thursday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="thursdayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $thursday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="thursdayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $thursday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="thursdayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $thursday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                                <dt>Friday</dt>
-                                <dd id="friday">6am-11am, 1pm-5pm</dd>
+                                    <dt>Friday</dt>
+                                    <dd id="friday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="fridayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $friday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="fridayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $friday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="fridayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $friday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="fridayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $friday->day_morning_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                                <dt>Saturday</dt>
-                                <dd id="saturday">-- - --, -- - --</dd>
+                                    <dt>Saturday</dt>
+                                    <dd id="saturday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="saturdayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $saturday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="saturdayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $saturday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="saturdayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $saturday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="saturdayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $saturday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                                <dt>Sunday</dt>
-                                <dd id="sunday">-- - --, -- - --</dd>
+                                    <dt>Sunday</dt>
+                                    <dd id="sunday">
+                                        <div class="form-inline">
+                                            Morning:&nbsp;&nbsp;&nbsp;
+                                            <input type="time" name="sundayMorningFrom" class="form-control" min="24:01" max="12:00" value="{{ $sunday->day_morning_from }}">
+                                            To
+                                            <input type="time" name="sundayMorningTo" class="form-control" min="24:01" max="12:00" value="{{ $sunday->day_morning_to }}">
+                                            <br />
+                                            <br />
+                                            Afternoon:
+                                            <input type="time" name="sundayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $sunday->day_afternoon_from }}">
+                                            To
+                                            <input type="time" name="sundayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $sunday->day_afternoon_to }}">
+                                        </div>
+                                    </dd>
+                                    <br />
 
-                            </dl>
+                                    <dd>
+                                        <a href="{{ url('/schedule/') }}"><button class="btn btn-danger">Cancel</button></a>
+                                        <input type="submit" class="btn btn-info" style="margin-left: 50px;">
+                                    </dd>
+
+                                </dl>
+
+
+                            </form>
                         </div>
                     </div>
 
