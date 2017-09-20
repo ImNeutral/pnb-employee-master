@@ -21,7 +21,7 @@
                                 <h4 class="title">Add New Employee</h4>
                                 <ol class="breadcrumb">
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ url('/employees') }}">Employees</a></li>
+                                    <li><a href="{{ url('/employee') }}">Employees</a></li>
                                     <li class="active">Add</li>
                                 </ol>
                             </div>
@@ -72,13 +72,13 @@
                                     <br />
                                     <br />
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <a class="btn btn-sm btn-primary" href="{{ url('/employees') }}">Ok</a>
-                                        <a class="btn btn-sm btn-danger col-sm-offset-1" href="{{ url('employees-account/' . session('employeeId') . '/edit') }}">Create Account</a>
+                                        <a class="btn btn-sm btn-primary" href="{{ url('/employee') }}">Ok</a>
+                                        <a class="btn btn-sm btn-danger col-sm-offset-1" href="{{ url('employee-account/' . session('employeeId') . '/edit') }}">Create Account</a>
                                     </div>
                                 </dl>
                             </div>
                         @else
-                            <form class="form-horizontal" action="{{ url('/employees') }}" method="POST">
+                            <form class="form-horizontal" action="{{ url('/employee') }}" method="POST">
                                 {{ csrf_field() }}
                                 @if(session('message'))
                                     <div class="alert alert-success alert-dismissible" role="alert">
@@ -144,7 +144,7 @@
                                 <div class="form-group">
                                     <label for="birthdate" class="col-sm-2 control-label">Birthdate</label>
                                     <div class="col-sm-6">
-                                        <input type="date" class="form-control" data-datepicker-color="primary" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" required>
+                                        <input type="text" class="form-control date-picker" data-datepicker-color="primary" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" placeholder="yyyy-mm-dd" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -180,10 +180,17 @@
                                     </div>
                                 </div>
 
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control datepicker">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-default">Submit</button>
-                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employees') }}">Cancel</a>
+                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Cancel</a>
                                     </div>
                                 </div>
                             </form>
@@ -208,4 +215,16 @@
     <script src="{{ asset('assets/js/extrajs-employee.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/now-ui-kit.js') }}" type="text/javascript"></script>
+    <script>
+
+        $('input.date-picker').on('click', function() {
+            $(this).select();
+        });
+
+        $('.date-picker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-36670d',
+            endDate: '-3667d',
+        });
+    </script>
 @endsection

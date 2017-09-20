@@ -82,7 +82,7 @@ class EmployeeController extends Controller
     {
         if($this->validateDuplicate($request->input('first_name'), $request->input('last_name'))){
             $request->flash();
-            return redirect('employees/create')->withErrors(['token' => 'The name you specified already exists!']);
+            return redirect('employee/create')->withErrors(['token' => 'The name you specified already exists!']);
         }
 
         Validator::make($request->all(), Employee::validationRule(), Employee::validationMessage())->validate();
@@ -106,7 +106,7 @@ class EmployeeController extends Controller
                 'employeeId'    => $employee->id
                 ];
         $request->flash();
-        return redirect('employees/create')->with($returnParams);
+        return redirect('employee/create')->with($returnParams);
     }
 
 
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         if($this->validateDuplicate($request->input('first_name'), $request->input('last_name'), $id)){
-            return redirect('/employees/' . $id . '/edit')->withErrors(['token' => 'The name you specified already exists!']);
+            return redirect('/employee/' . $id . '/edit')->withErrors(['token' => 'The name you specified already exists!']);
         }
 
         Validator::make($request->all(), Employee::validationRule(), Employee::validationMessage())->validate();
@@ -152,7 +152,7 @@ class EmployeeController extends Controller
         $employee->active           = $request->input('active');
         $employee->save();
 
-        return redirect('/employees/' . $employee->id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
+        return redirect('/employee/' . $employee->id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
     }
 
 //    public function search($page = 1, $search = ''){
@@ -167,7 +167,6 @@ class EmployeeController extends Controller
 //                                ->orderBy('first_name', 'ASC')
 //                                ->get();
 //    }
-
 
     public function accountEdit($employeeId){
         $employee       = Employee::find($employeeId);
@@ -216,7 +215,7 @@ class EmployeeController extends Controller
             $account->save();
             $this->insertAccessType($account, $request->input('account_access'));
             $this->removeAccessType($account, $request->input('account_access'));
-            return redirect('/employees-account/' . $employee->id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
+            return redirect('/employee-account/' . $employee->id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
         } else {
             Validator::make($request->all(), Account::validationRule(), Account::validationMessage())->validate();
             $account = new Account;
@@ -225,7 +224,7 @@ class EmployeeController extends Controller
             $account->active   = $request->input('active');
             $employee->account()->save($account);
             $this->insertAccessType($account, $request->input('account_access'));
-            return redirect('/employees-account/' . $employee->id . '/edit')->with(['message' => 'Successfully created employee account!']);
+            return redirect('/employee-account/' . $employee->id . '/edit')->with(['message' => 'Successfully created employee account!']);
         }
     }
 
@@ -276,6 +275,11 @@ class EmployeeController extends Controller
 
         return $returnVal;
     }
+
+    public function schedule(){
+        return view('employee.employeeSchedule');
+    }
+
 
     public function destroy($id)
     {

@@ -29,7 +29,7 @@
                                 <h4 class="title">Employee Edit</h4>
                                 <ol class="breadcrumb">
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ url('/employees') }}">Employees</a></li>
+                                    <li><a href="{{ url('/employee') }}">Employees</a></li>
                                     <li class="active">Edit</li>
                                 </ol>
                             </div>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="content">
-                        <form class="form-horizontal" action="{{ url('employees/' . $employee->id) }}" method="POST">
+                        <form class="form-horizontal" action="{{ url('employee/' . $employee->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             @if(session('message'))
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label for="birthdate" class="col-sm-2 control-label">Birthdate</label>
                                 <div class="col-sm-6">
-                                    <input type="date" class="form-control" data-datepicker-color="primary" id="birthdate" name="birthdate" value="{{ date_format($employee->birthdate, "Y-m-d") }}">
+                                    <input type="text" class="form-control date-picker" data-datepicker-color="primary" id="birthdate" name="birthdate" value="{{ date_format($employee->birthdate, "Y-m-d") }}" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,7 +134,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-default">Save Changes</button>
-                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employees') }}">Back</a>
+                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
                                 </div>
                             </div>
                         </form>
@@ -159,4 +159,15 @@
     <script src="{{ asset('assets/js/extrajs-employee.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/now-ui-kit.js') }}" type="text/javascript"></script>
+    <script>
+        $('input.date-picker').on('click', function() {
+            $(this).select();
+        });
+
+        $('.date-picker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-36670d',
+            endDate: '-3667d',
+        });
+    </script>
 @endsection

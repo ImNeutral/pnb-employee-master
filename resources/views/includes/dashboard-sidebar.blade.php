@@ -19,13 +19,13 @@
             </a>
         </li>
         <li id="employees">
-            <a href="{{ url('employees') }}">
+            <a href="{{ url('employee') }}">
                 <i class="ti-view-list-alt"></i>
                 <p>Employees</p>
             </a>
         </li>
-        <li>
-            <a href="user.html">
+        <li id="sales">
+            <a href="{{ url('sales') }}">
                 <i class="ti-share-alt"></i>
                 <p>Sales</p>
             </a>

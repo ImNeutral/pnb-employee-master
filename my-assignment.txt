@@ -2,14 +2,14 @@ Testing 123
 Components
 1. Sales Reporting and Analytics
     Modules
-    a. Sales analytics
+    /a. Sales analytics
         - Daily
         - Monthly
-        - Yearly
-    b. Top Products
+        - Annual
+    /b. Top Products
         - Daily
         - Monthly
-        - Yearly
+        - Annual
     c. Reporting
         - Print Sales Reports
 2. Employee Management
@@ -18,9 +18,9 @@ Components
         - Employee Scheduling
         - Biometric Time-in and Time-out ( Attendance )
         - Employee History ( period of work, attendance )
-    -b. Employee Information
+    /b. Employee Information
         - Demographic Profile
     c. Employee Transactions ( Cashier, waiter, manager )
         - Trace transactions ( orders and payments )
-    -d. Accounts
+    /d. Accounts
         - Manage Employee Module Accounts

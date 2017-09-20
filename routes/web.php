@@ -12,19 +12,35 @@
 */
 
 Route::get('/', function () {
-    return redirect('/employees');
+    return redirect('/employee');
 });
 
-Route::get('/earnings', function () {
+Route::get('/earning', function () {
     return view('user-panel.earnings');
 });
 
 
-Route::get( '/employees-account/{employee_id}/edit',   'EmployeeController@accountEdit');
-Route::put('/employees-account/{employee_id}',        'EmployeeController@accountUpdate');
-Route::get('/employees-account/getChangePasswordCode/{employee_id}', 'EmployeeController@getChangePasswordCode');
+Route::get( '/employee-account/{employee_id}/edit',                 'EmployeeController@accountEdit');
+Route::put('/employee-account/{employee_id}',                       'EmployeeController@accountUpdate');
+Route::get('/employee-account/getChangePasswordCode/{employee_id}', 'EmployeeController@getChangePasswordCode');
+Route::resource('/employee',                                        'EmployeeController');
+Route::get('/employee/schedule/{id}',                               'EmployeeController@schedule');
+Route::get('/employee/search',                                      'EmployeeController@search');
 
 
-Route::resource('/employees', 'EmployeeController');
-Route::get('/employees/search', 'EmployeeController@search');
-//Route::get('/employees/{page}/{search}/{pageKey?}', 'EmployeeController@search');
+Route::group(['prefix' => 'sales'], function () {
+    Route::get('/', function ()    { return view('sales.sales'); });
+    Route::get('/getAllYearsData',      'OrderController@getAllYearsData');
+    Route::get('/getAllMonthsData',     'OrderController@getAllMonthsData');
+    Route::get('/getAllDaysData',       'OrderController@getAllDaysData');
+});
+
+Route::group(['prefix' => 'top-products'], function () {
+    Route::get('/',                     'OrderController@topProducts');
+    Route::get('/topProductsForYear',   'OrderController@topProductsForYear');
+    Route::get('/topProductsForMonth',  'OrderController@topProductsForMonth');
+    Route::get('/topProductsForDay',    'OrderController@topProductsForDay');
+});
+
+
+

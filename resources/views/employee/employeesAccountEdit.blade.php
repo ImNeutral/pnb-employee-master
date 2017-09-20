@@ -1,7 +1,7 @@
 @extends('includes.dashboard-header')
 @include('vendor.employee.view-employee-details')
 @section('title')
-    Employee | Edit
+    Employee | Account | Edit
 @endsection
 @section('extrastyle')
     <link href="{{ asset('assets/css/extrastyle-employee.css') }}" rel="stylesheet" />
@@ -21,7 +21,7 @@
                                 <h4 class="title">Employee Account Edit</h4>
                                 <ol class="breadcrumb">
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ url('/employees') }}">Employees</a></li>
+                                    <li><a href="{{ url('/employee') }}">Employees</a></li>
                                     <li class="active">Account Edit</li>
                                 </ol>
                             </div>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="content">
-                        <form class="form-horizontal" action="{{ url('employees-account/' . $account->employee_id) }}" method="POST">
+                        <form class="form-horizontal" action="{{ url('employee-account/' . $account->employee_id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             @if(isset($message))
@@ -161,7 +161,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-default">Save Changes</button>
-                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employees') }}">Back</a>
+                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
                                 </div>
                             </div>
                         </form>
@@ -192,7 +192,7 @@
             $changePasswordCode.removeClass('hidden');
 
             $.ajax({
-                url : '/employees-account/getChangePasswordCode/' + {{ $account->employee_id }},
+                url : '/employee-account/getChangePasswordCode/' + {{ $account->employee_id }},
                 type: 'GET',
                 success: function (response) {
                     $changePasswordCode.html('Use this code: ' + response['code']);

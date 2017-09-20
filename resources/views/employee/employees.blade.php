@@ -51,19 +51,19 @@
                             <ul class="nav nav-pills" style="float: right;">
 
                                 <li style="margin-right: 20px;">
-                                    <a href="{{ url('/employees/create') }}" style="padding-top: 0px;">
+                                    <a href="{{ url('/employee/create') }}" style="padding-top: 0px;">
                                     <button class="btn btn-default tooltip-employee glyphicon-plus" id="view-details" data-placement="top" title="Add New Employee">
                                         <span class="glyphicon glyphicon-user" ></span>
                                     </button>
                                     </a>
                                 </li>
-                                <li class="{{ !isset($_GET['key'])? 'active' : '' }} {{ isset($_GET['key']) && $_GET['key']!='active' && $_GET['key']!='inactive'? 'active' : '' }}"><a href="{{ url('employees/?page=1&search=&key=all') }}" >
+                                <li class="{{ !isset($_GET['key'])? 'active' : '' }} {{ isset($_GET['key']) && $_GET['key']!='active' && $_GET['key']!='inactive'? 'active' : '' }}"><a href="{{ url('employee/?page=1&search=&key=all') }}" >
                                         All Employees</a>
                                 </li>
-                                <li class="{{ isset($_GET['key']) && $_GET['key']=='active'? 'active' : ''  }}"><a href="{{ url('employees/?page=1&search=&key=active') }}">
+                                <li class="{{ isset($_GET['key']) && $_GET['key']=='active'? 'active' : ''  }}"><a href="{{ url('employee/?page=1&search=&key=active') }}">
                                         Active Employees</a>
                                 </li>
-                                <li class="{{ isset($_GET['key']) && $_GET['key']=='inactive'? 'active' : '' }}"><a href="{{ url('employees/?page=1&search=&key=inactive') }}">
+                                <li class="{{ isset($_GET['key']) && $_GET['key']=='inactive'? 'active' : '' }}"><a href="{{ url('employee/?page=1&search=&key=inactive') }}">
                                         Inactive Employees</a>
                                 </li>
                             </ul>
@@ -109,9 +109,9 @@
 
                                                     <td>
                                                         <button class="btn btn-default btn-sm tooltip-employee" id="view-details" data-toggle="modal" data-target="#view-employee-details" data-toggle="tooltip" data-placement="top" title="View Full Employee details."><span class="glyphicon glyphicon-eye-open" ></span></button>
-                                                        <a href="{{ url('employees/' . $employee->id . '/edit') }}" class="btn btn-primary btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Details."><span class="glyphicon glyphicon-pencil"></span></a>
-                                                        <a href="{{ url('employees-account/' . $employee->id . '/edit') }}" class="btn btn-warning btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Account and Account Access."><span class="glyphicon glyphicon-indent-left"></span></a>
-                                                        <a href="#" class="btn btn-danger btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Employee Duty Schedule"><span class="glyphicon glyphicon-list-alt"></span></a>
+                                                        <a href="{{ url('employee/' . $employee->id . '/edit') }}" class="btn btn-primary btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Details."><span class="glyphicon glyphicon-pencil"></span></a>
+                                                        <a href="{{ url('employee-account/' . $employee->id . '/edit') }}" class="btn btn-warning btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Account and Account Access."><span class="glyphicon glyphicon-indent-left"></span></a>
+                                                        <a href="{{ url('employee/schedule/' . $employee->id) }}" class="btn btn-danger btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Employee Duty Schedule"><span class="glyphicon glyphicon-list-alt"></span></a>
                                                     </td>
 
                                                     {{--visible columns ends here--}}
@@ -147,11 +147,11 @@
                             </div>
                             @if($count > 0)
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <a class="btn btn-default" href="{{ $currentPage == '1'? '#' : url('employees/?page=' . ($currentPage-1) . $getInputs) }}" {{ $isFirstPage  }} data-toggle="tooltip" data-placement="top" title="Previous Page"><</a>
+                                <a class="btn btn-default" href="{{ $currentPage == '1'? '#' : url('employee/?page=' . ($currentPage-1) . $getInputs) }}" {{ $isFirstPage  }} data-toggle="tooltip" data-placement="top" title="Previous Page"><</a>
                                 @for($roll = 1; $roll <= $allPages; $roll++)
-                                    <a type="button" class="btn btn-default" href="{{ $currentPage == $roll? '#' : url('employees/?page=' . ($roll) . $getInputs ) }}" {{ $currentPage == $roll? 'disabled' : ''}} data-toggle="tooltip" data-placement="top" title="Page {{ $roll }}">{{ $roll }}</a>
+                                    <a type="button" class="btn btn-default" href="{{ $currentPage == $roll? '#' : url('employee/?page=' . ($roll) . $getInputs ) }}" {{ $currentPage == $roll? 'disabled' : ''}} data-toggle="tooltip" data-placement="top" title="Page {{ $roll }}">{{ $roll }}</a>
                                 @endfor
-                                <a class="btn btn-default" href="{{ $isLastPage == 'disabled'? '#' : url('employees/?page=' . ($currentPage + 1)  . $getInputs) }}" {{ $isLastPage  }} data-toggle="tooltip" data-placement="top" title="Next Page">></a>
+                                <a class="btn btn-default" href="{{ $isLastPage == 'disabled'? '#' : url('employee/?page=' . ($currentPage + 1)  . $getInputs) }}" {{ $isLastPage  }} data-toggle="tooltip" data-placement="top" title="Next Page">></a>
                                 <br />
                                 <br />
                                 <p style="font-size: 12px;">Showing {{ $entriesFrom }} to {{  $counter-1 }} of {{ $count }} employee(s)</p>
