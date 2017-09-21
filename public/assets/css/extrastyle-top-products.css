@@ -1,0 +1,31 @@
+
+@media print
+{
+    /*body * { visibility: hidden; }*/
+    /*#printContent * { visibility: visible;}*/
+    /*#printContent   { position: absolute; top: 40px; left: 30px; float: none !important;}*/
+
+    .table {
+        height:100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+
+    #printContent {
+        opacity: 1 !important;
+        page-break-after: auto;
+    }
+
+    .main-panel {
+        visibility: hidden;
+    }
+
+}
+
+@page {
+    margin: 0mm;
+    margin-bottom: 10mm;
+    margin-right: 2mm;
+    padding-left: 0mm;
+}

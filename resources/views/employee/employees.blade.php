@@ -110,7 +110,7 @@
                                                     <td>
                                                         <button class="btn btn-default btn-sm tooltip-employee" id="view-details" data-toggle="modal" data-target="#view-employee-details" data-toggle="tooltip" data-placement="top" title="View Full Employee details."><span class="glyphicon glyphicon-eye-open" ></span></button>
                                                         <a href="{{ url('employee/' . $employee->id . '/edit') }}" class="btn btn-primary btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Details."><span class="glyphicon glyphicon-pencil"></span></a>
-                                                        <a href="{{ url('employee-account/' . $employee->id . '/edit') }}" class="btn btn-warning btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Account and Account Access."><span class="glyphicon glyphicon-indent-left"></span></a>
+                                                        <a href="{{ url('employee-account/' . $employee->id . '/edit') }}" class="btn btn-warning btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Edit Employee Account and Account Access."><span class="glyphicon glyphicon-log-in"></span></a>
                                                         <a href="{{ url('employee/schedule/' . $employee->id) }}" class="btn btn-danger btn-sm tooltip-employee" data-toggle="tooltip" data-placement="top" title="Employee Duty Schedule"><span class="glyphicon glyphicon-list-alt"></span></a>
                                                     </td>
 

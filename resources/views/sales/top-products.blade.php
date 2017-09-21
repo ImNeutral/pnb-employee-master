@@ -6,6 +6,7 @@
 @section('extrastyle')
     <link href="{{ asset('assets/css/extrastyle-sales.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/morris/morris.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/extrastyle-top-products.css') }}" rel="stylesheet" />
 @endsection
 @section('body')
     <div class="wrapper">
@@ -73,9 +74,11 @@
                                 <select name="day" id="day" class="form-control hidden">
                                     <option value="0" selected disabled>-- Select Day --</option>
                                     <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
                                 </select>
+                            </li>
+
+                            <li style="float: left;" >
+                                <button class="btn btn-info hidden" id="print" onclick="printThisDay()"><span class="glyphicon glyphicon-print"> </span> Print
                             </li>
                         </ul>
 
@@ -85,6 +88,7 @@
                             <p class="text-center" id="head"><strong>Annual</strong></p>
 
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -100,6 +104,7 @@
         </div>
     </div>
 @endsection
+
 @section('extrajs')
     <script src="{{ asset('assets/js/now-ui-kit.js') }}" type="text/javascript"></script>
     <script src="{{ asset('plugins/morris/raphael-min.js') }}" type="text/javascript"></script>
@@ -109,3 +114,24 @@
 
     </script>
 @endsection
+
+
+<div id="printContent" class="printContent col-lg-12 hidden" style="opacity: 0;">
+    <h5 class="text-center">Pares Ni Bastie</h5>
+    <p class="text-center">Sales Report on September 9, 2017</p>
+    <table class="table table-bordered"  style="font-size: 11px; font-weight: 100; color: black; width: 100%;" id="topProductsTablePrint">
+        <thead>
+        <tr>
+            <th width="8%">Table</th>
+            <th width="10%">Time Tendered</th>
+            <th width="10%">Type</th>
+            <th width="25%">Food Name</th>
+            <th width="17%" style="text-align: right;">Price</th>
+            <th width="10%" style="text-align: right;">Quantity</th>
+            <th width="20%" style="text-align: right;">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>

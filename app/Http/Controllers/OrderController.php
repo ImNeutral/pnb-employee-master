@@ -244,5 +244,32 @@ class OrderController extends Controller
         return $productMonthData;
     }
 
+    public function ordersForDay(){
+        $year = $_GET['year'];
+        $month = $_GET['month'];
+        $day = $_GET['day'];
+
+        $ordersForDay = $this->productsDataForDay($year, $month, $day);
+
+        $returnParams = [];
+        $counter1     = 0;
+//
+        foreach ($ordersForDay as $orderForDay) {
+            $orderItems = $orderForDay->orderItems()->get();
+            foreach ($orderItems as $orderItem) {
+                $returnParams[$counter1][0] = $orderItem->order_id;
+                $returnParams[$counter1][1] = $orderForDay->table;
+                $returnParams[$counter1][2] = date_format(date_create($orderForDay->created_at), 'h:i a');
+                $returnParams[$counter1][3] = $orderForDay->type;
+                $returnParams[$counter1][4] = $orderItem->name;
+                $returnParams[$counter1][5] = $orderItem->price;
+                $returnParams[$counter1][6] = $orderItem->qty;
+                $returnParams[$counter1][7] = $orderItem->total;
+                $counter1++;
+            }
+        }
+
+        return response()->json(['ordersForDay' => $returnParams]);
+    }
 
 }

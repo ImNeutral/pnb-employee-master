@@ -40,6 +40,7 @@ Route::group(['prefix' => 'top-products'], function () {
     Route::get('/topProductsForYear',   'OrderController@topProductsForYear');
     Route::get('/topProductsForMonth',  'OrderController@topProductsForMonth');
     Route::get('/topProductsForDay',    'OrderController@topProductsForDay');
+    Route::get('/ordersForDay',         'OrderController@ordersForDay');
 });
 
 

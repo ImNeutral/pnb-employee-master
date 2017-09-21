@@ -2,16 +2,18 @@ $(document).ready(function() {
     $('.navbar-brand').html('Sales');
     $('#sales').addClass('active');
 
-    $year = $('#year');
-    $month = $('#month');
-    $day = $('#day');
-    urlPrefix = 'top-products';
+    $year       = $('#year');
+    $month      = $('#month');
+    $day        = $('#day');
+    $print      = $('#print');
+    urlPrefix   = 'top-products';
 
 
     $year.change(function(){
         $month.val(0);
         $day.val(0);
         $day.addClass('hidden');
+        $print.addClass('hidden');
 
         yearTopProducts($year.val());
     });
@@ -128,6 +130,7 @@ function monthTopProducts(year, month){
                 });
             } else {
                 $day.addClass('hidden');
+                $print.addClass('hidden');
                 $('#graph').html('No Sales on ' + year + ' - ' + monthsVal[month]);
             }
         },
@@ -161,6 +164,7 @@ function dayTopProducts(year, month, day){
             }
 
             if(arrayDataDay.length > 0){
+                $print.removeClass('hidden');
                 Morris.Bar({
                     element: 'graph',
                     data: arrayDataDay,
@@ -171,10 +175,74 @@ function dayTopProducts(year, month, day){
                     stacked: true
                 });
             } else {
+                $print.addClass('hidden');
                 $('#graph').html('No Sales on ' + year + ' - ' + monthsVal[month] + ' ' + day);
             }
         },
         error: function () {
         }
     });
+}
+
+function printThisDay(){
+    year    = $year.val();
+    month   = $month.val();
+    day     = $day.val();
+
+    $printContent = $('#printContent');
+    $('#topProductsTablePrint tbody').empty();
+
+    $.ajax({
+        type: 'GET',
+        url: urlPrefix + '/ordersForDay?year=' + year + '&month=' + month + '&day=' + day,
+        success: function (response) {
+            ordersForDay = response['ordersForDay'];
+            $insertRow = "";
+            $curOrderID = 0;
+            $total = 0;
+            for (i = 0; i < ordersForDay.length; i++) {
+                if($curOrderID != ordersForDay[i][0] && $curOrderID != 0) {
+                    $insertRow += '<tr>';
+                    $insertRow += '<td colspan="5"></td>';
+                    $insertRow += '<td>Grand Total:</td>';
+                    $insertRow += '<td style="text-align: right;">' + $total + '</td>';
+                    $insertRow += '</tr>';
+
+                    $total = 0;
+                }
+
+                $insertRow += '<tr>';
+
+                if($curOrderID != ordersForDay[i][0]) {
+                    $insertRow += '<td>' + ordersForDay[i][1] + '</td>';
+                    $insertRow += '<td>' + ordersForDay[i][2] + '</td>';
+                    $insertRow += '<td>' + ordersForDay[i][3] + '</td>';
+                    $curOrderID = ordersForDay[i][0];
+                } else {
+                    $insertRow += '<td colspan="3"></td>';
+                }
+                $insertRow += '<td>' + ordersForDay[i][4] + '</td>';
+                $insertRow += '<td style="text-align: right;">' + ordersForDay[i][5] + '</td>';
+                $insertRow += '<td style="text-align: right;">' + ordersForDay[i][6] + '</td>';
+                $insertRow += '<td style="text-align: right;">' + ordersForDay[i][7] + '</td>';
+                $insertRow += '</tr>';
+
+                $total += parseFloat(ordersForDay[i][5]);
+            }
+
+            $insertRow += '<tr>';
+            $insertRow += '<td colspan="5"></td>';
+            $insertRow += '<td>Grand Total:</td>';
+            $insertRow += '<td style="text-align: right;">' + $total + '</td>';
+            $insertRow += '</tr>';
+
+            $('#topProductsTablePrint').append($insertRow);
+
+            print();
+            $printContent.addClass('hidden');
+        },
+        error: function () {
+        }
+    });
+
 }
