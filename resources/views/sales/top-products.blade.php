@@ -37,6 +37,9 @@
                             <li class="active"><a href="{{ url('/top-products') }}">
                                     Top Products</a>
                             </li>
+                            <li ><a href="{{ url('/sales-print') }}">
+                                    Sales Report</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -72,14 +75,18 @@
                             <li style="float: left;" >
 
                                 <select name="day" id="day" class="form-control hidden">
-                                    <option value="0" selected disabled>-- Select Day --</option>
-                                    <option value="1">1</option>
+                                    <option selected disabled>-- Select Day --</option>
                                 </select>
                             </li>
 
                             <li style="float: left;" >
-                                <button class="btn btn-info hidden" id="print" onclick="printThisDay()"><span class="glyphicon glyphicon-print"> </span> Print
+                                <button class="btn btn-info" id="viewTopProducts" onclick="viewTopProducts()"><span class="glyphicon glyphicon-eye-open"> </span> View </button>
                             </li>
+
+                            {{--<li style="float: left;" >--}}
+                                {{--<button class="btn btn-info hidden" id="print" onclick="printThisDay()"><span class="glyphicon glyphicon-print"> </span> Print--}}
+                            {{--</li>--}}
+
                         </ul>
 
                         <div class="content"  style="margin-top: 80px;">
@@ -116,22 +123,22 @@
 @endsection
 
 
-<div id="printContent" class="printContent col-lg-12 hidden" style="opacity: 0;">
-    <h5 class="text-center">Pares Ni Bastie</h5>
-    <p class="text-center">Sales Report on September 9, 2017</p>
-    <table class="table table-bordered"  style="font-size: 11px; font-weight: 100; color: black; width: 100%;" id="topProductsTablePrint">
-        <thead>
-        <tr>
-            <th width="8%">Table</th>
-            <th width="10%">Time Tendered</th>
-            <th width="10%">Type</th>
-            <th width="25%">Food Name</th>
-            <th width="17%" style="text-align: right;">Price</th>
-            <th width="10%" style="text-align: right;">Quantity</th>
-            <th width="20%" style="text-align: right;">Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
+{{--<div id="printContent" class="printContent col-lg-12 hidden" style="opacity: 0;">--}}
+    {{--<h5 class="text-center">Pares Ni Bastie</h5>--}}
+    {{--<p class="text-center">Sales Report on September 9, 2017</p>--}}
+    {{--<table class="table table-bordered"  style="font-size: 11px; font-weight: 100; color: black; width: 100%;" id="topProductsTablePrint">--}}
+        {{--<thead>--}}
+        {{--<tr>--}}
+            {{--<th width="8%">Table</th>--}}
+            {{--<th width="10%">Time Tendered</th>--}}
+            {{--<th width="10%">Type</th>--}}
+            {{--<th width="25%">Food Name</th>--}}
+            {{--<th width="17%" style="text-align: right;">Price</th>--}}
+            {{--<th width="10%" style="text-align: right;">Quantity</th>--}}
+            {{--<th width="20%" style="text-align: right;">Total</th>--}}
+        {{--</tr>--}}
+        {{--</thead>--}}
+        {{--<tbody>--}}
+        {{--</tbody>--}}
+    {{--</table>--}}
+{{--</div>--}}

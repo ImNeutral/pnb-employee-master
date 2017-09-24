@@ -72,7 +72,7 @@
                                     <br />
                                     <br />
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <a class="btn btn-sm btn-primary" href="{{ url('/employee') }}">Ok</a>
+                                        <a class="btn btn-sm btn-primary" href="{{ url('/employee') }}">View Employee List</a>
                                         <a class="btn btn-sm btn-danger col-sm-offset-1" href="{{ url('employee-account/' . session('employeeId') . '/edit') }}">Create Account</a>
                                     </div>
                                 </dl>
@@ -98,9 +98,6 @@
                                 @endif
 
 
-                                <div class="form-group">
-                                    <label for="first-name" class="col-sm-2 col-sm-offset-1"><strong style="color: red;">* All fields are required!</strong></label>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="first-name" class="col-sm-2 control-label">Firstname</label>
@@ -150,7 +147,7 @@
                                 <div class="form-group">
                                     <label for="contact-number" class="col-sm-2 control-label">Contact #</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="contact-number" name="contact_number" value="{{ old('contact_number') }}" placeholder="Contact Number">
+                                        <input type="text" class="form-control" id="contact-number" name="contact_number" value="{{ old('contact_number') }}" placeholder="Contact Number"   pattern="\d*" title="Please input number only">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -166,6 +163,8 @@
                                             <option selected disabled>-- Please Select --</option>
                                             <option value="WAITER"  {{ (old('position') == 'WAITER')? 'selected' : '' }}>Waiter</option>
                                             <option value="MANAGER" {{ (old('position') == 'MANAGER')? 'selected' : '' }}>Manager</option>
+                                            <option value="CASHIER" {{ (old('position') == 'CASHIER')? 'selected' : '' }}>Cashier</option>
+                                            <option value="OWNER" {{ (old('position') == 'OWNER')? 'selected' : '' }}>Owner</option>
                                         </select>
                                     </div>
                                 </div>
@@ -180,11 +179,15 @@
                                     </div>
                                 </div>
 
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control datepicker">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
+                                {{--<div class="input-group date" data-provide="datepicker">--}}
+                                    {{--<input type="text" class="form-control datepicker">--}}
+                                    {{--<div class="input-group-addon">--}}
+                                        {{--<span class="glyphicon glyphicon-th"></span>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+
+                                <div class="form-group">
+                                    <label for="first-name" class="col-sm-2 col-sm-offset-1"><strong style="color: red;">* All fields are required!</strong></label>
                                 </div>
 
                                 <div class="form-group">

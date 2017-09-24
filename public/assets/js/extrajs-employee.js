@@ -22,7 +22,6 @@ function clickEvents(){
         $viewEmployee.find('#position')     .html($employeeSelected.find('#position').html());
 
 
-
         $account_active = $employeeSelected.find('#account_active').html();
         $active         = $employeeSelected.find('#active').html();
         if($active == '1') {

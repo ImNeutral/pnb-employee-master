@@ -31,7 +31,12 @@
                     <div class="content">
                         <div class="container">
 
-                            <dl class="dl-horizontal">
+                            <dl class="dl-horizontal" style="font-size: 18px">
+                                <dt></dt>
+                                <dd style="width: 25%;">
+                                        <p><notin>Morning</notin> <notin style="float: right">Afternoon</notin></p>
+                                </dd>
+
                                 <dt>Monday</dt>
                                 <dd id="monday">
                                     {{ empty($monday->day_morning_from)? '--:--' : date_format(date_create("0000-00-00" . $monday->day_morning_from), 'h:i a') }}
@@ -111,8 +116,8 @@
                                 </dd>
                                 <br />
                                 <dd>
-                                    <a href="{{ url('/employee') }}"><button class="btn btn-danger btn-sm">Back</button></a>
-                                    <a href="{{ url('/employee/schedule/'. $employee_id .'/edit') }}"><button class="btn btn-info btn-sm" style="margin-left: 50px;">Edit</button></a>
+                                    <a href="{{ url('/employee') }}"><button class="btn btn-danger">View Employee List</button></a>
+                                    <a href="{{ url('/employee/schedule/'. $employee_id .'/edit') }}"><button class="btn btn-info" style="margin-left: 50px;">Edit</button></a>
                                 </dd>
                             </dl>
                         </div>

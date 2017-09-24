@@ -272,4 +272,28 @@ class OrderController extends Controller
         return response()->json(['ordersForDay' => $returnParams]);
     }
 
+    public function salesPrint(){
+        $fromDate    = isset($_GET['fromDate'])? $_GET['fromDate'] . ' 00:00:00' : '0' ;
+        $toDate      = isset($_GET['toDate'])? $_GET['toDate'] . ' 23:59:59' : '0' ;
+        $ordersID   = Array();
+        $orders     = Order::whereBetween('created_at', [$fromDate, $toDate])->get();
+
+        foreach ($orders as $order) {
+            array_push($ordersID, $order->id);
+        }
+
+        $allProductsTendered = OrderItem::select('name', 'price', DB::raw('sum(qty) as quantity'), DB::raw('sum(total) as total'))
+                ->distinct('name')
+                ->whereIn('order_id', $ordersID)
+                ->groupBy('name', 'price')
+                ->orderBy(DB::raw('sum(total)') , 'DESC')
+                ->get();
+
+        $returnParams = [
+            'years'     => $this->getAllYears(),
+            'allProducts'    => $allProductsTendered
+        ];
+
+        return view('sales.sales-print')->with($returnParams);
+    }
 }

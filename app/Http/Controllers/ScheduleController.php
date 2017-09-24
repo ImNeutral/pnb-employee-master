@@ -95,12 +95,12 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $this->editEmployeeSchedule($id, 'monday',      $request);
-//        $this->editEmployeeSchedule($id, 'tuesday',     $request);
-//        $this->editEmployeeSchedule($id, 'wednesday',   $request);
-//        $this->editEmployeeSchedule($id, 'thursday',    $request);
-//        $this->editEmployeeSchedule($id, 'friday',      $request);
-//        $this->editEmployeeSchedule($id, 'saturday',    $request);
-//        $this->editEmployeeSchedule($id, 'sunday',      $request);
+        $this->editEmployeeSchedule($id, 'tuesday',     $request);
+        $this->editEmployeeSchedule($id, 'wednesday',   $request);
+        $this->editEmployeeSchedule($id, 'thursday',    $request);
+        $this->editEmployeeSchedule($id, 'friday',      $request);
+        $this->editEmployeeSchedule($id, 'saturday',    $request);
+        $this->editEmployeeSchedule($id, 'sunday',      $request);
 
         return redirect('/employee/schedule/' . $id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
     }
@@ -122,21 +122,25 @@ class ScheduleController extends Controller
         $day    = Schedule::where(['employee_id' => $employee_id, 'day' => $dayName])->first();
 
         if($day != null) {
-            $day->day_morning_from      = $request->input($dayName . 'MorningFrom');
-            $day->day_morning_to        = $request->input($dayName . 'MorningTo');
-            $day->day_afternoon_from    = $request->input($dayName . 'AfternoonFrom');
-            $day->day_afternoon_to      = $request->input($dayName . 'AfternoonTo');
+            $day->day_morning_from      = $request->input( $this->getFullDayName($dayName, 'MorningFrom') );
+            $day->day_morning_to        = $request->input( $this->getFullDayName($dayName, 'MorningTo') );
+            $day->day_afternoon_from    = $request->input( $this->getFullDayName($dayName, 'AfternoonFrom') );
+            $day->day_afternoon_to      = $request->input( $this->getFullDayName($dayName, 'AfternoonTo') );
             $day->save();
         } else {
             $dayNew = new Schedule;
             $dayNew->employee_id           = $employee_id;
             $dayNew->day                   = $dayName;
-            $dayNew->day_morning_from      = $request->input($dayName . 'MorningFrom');
-            $dayNew->day_morning_to        = $request->input($dayName . 'MorningTo');
-            $dayNew->day_afternoon_from    = $request->input($dayName . 'AfternoonFrom');
-            $dayNew->day_afternoon_to      = $request->input($dayName . 'AfternoonTo');
+            $dayNew->day_morning_from      = $request->input( $this->getFullDayName($dayName, 'MorningFrom') );
+            $dayNew->day_morning_to        = $request->input( $this->getFullDayName($dayName, 'MorningTo') );
+            $dayNew->day_afternoon_from    = $request->input( $this->getFullDayName($dayName, 'AfternoonFrom') );
+            $dayNew->day_afternoon_to      = $request->input( $this->getFullDayName($dayName, 'AfternoonTo') );
             $dayNew->save();
         }
+    }
+
+    function getFullDayName($dayName, $dayTimeName){
+        return $dayName . $dayTimeName;
     }
 
     public function destroy($id)

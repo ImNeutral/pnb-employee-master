@@ -5,6 +5,7 @@
 @endsection
 @section('extrastyle')
     <link href="{{ asset('assets/css/extrastyle-employee.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/extrastyle-pagination.css') }}" rel="stylesheet" />
 @endsection
 @section('body')
     <div class="wrapper">
@@ -74,8 +75,9 @@
                                     <br />
                                     <br />
                                     <!-- Tab panes -->
-                                    <p style="font-size: 12px;">You are searching "{{ $_GET['search'] }}" </p>
-                                    <p style="font-size: 12px;">Found a total of {{ $count }} employee(s) </p>
+                                    <i style="font-size: 14px;">You are trying to look for <strong>{{ $_GET['search'] }}"</strong></i>
+                                    <br />
+                                    <i style="font-size: 14px;">Found <strong>{{ $count }}</strong> result(s) </i>
                                     <br />
                                 </div>
                             @endif
@@ -93,6 +95,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
+
                                             <?php $counter = $entriesFrom; ?>
                                             @foreach($employees as $employee)
                                                 <tr>
@@ -142,11 +146,14 @@
                                             @if($count <= 0)
                                                 <tr class="text-center"><td colspan="6">No employees found.</td></tr>
                                             @endif
+
+
                                         </tbody>
                                     </table>
                             </div>
+
                             @if($count > 0)
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <ul class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <a class="btn btn-default" href="{{ $currentPage == '1'? '#' : url('employee/?page=' . ($currentPage-1) . $getInputs) }}" {{ $isFirstPage  }} data-toggle="tooltip" data-placement="top" title="Previous Page"><</a>
                                 @for($roll = 1; $roll <= $allPages; $roll++)
                                     <a type="button" class="btn btn-default" href="{{ $currentPage == $roll? '#' : url('employee/?page=' . ($roll) . $getInputs ) }}" {{ $currentPage == $roll? 'disabled' : ''}} data-toggle="tooltip" data-placement="top" title="Page {{ $roll }}">{{ $roll }}</a>
@@ -155,8 +162,9 @@
                                 <br />
                                 <br />
                                 <p style="font-size: 12px;">Showing {{ $entriesFrom }} to {{  $counter-1 }} of {{ $count }} employee(s)</p>
-                            </div>
+                            </ul>
                             @endif
+
                         </div>
 
                     </div>

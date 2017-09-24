@@ -103,7 +103,7 @@
                             <div class="form-group">
                                 <label for="contact-number" class="col-sm-2 control-label">Contact #</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="contact-number" name="contact_number" value="{{ $employee->contact_number }}" placeholder="Contact Number">
+                                    <input type="text" class="form-control" id="contact-number" name="contact_number" value="{{ $employee->contact_number }}" placeholder="Contact Number"  pattern="\d*" title="Please input number only">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,8 +116,10 @@
                                 <label for="position" class="col-sm-2 control-label">Position</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" id="position" name="position" >
-                                        <option value="WAITER" {{ ($employee->position == 'WAITER')? 'selected' : '' }}>Waiter</option>
+                                        <option value="WAITER" {{  ($employee->position == 'WAITER')? 'selected' : '' }}>Waiter</option>
                                         <option value="MANAGER" {{ ($employee->position == 'MANAGER')? 'selected' : '' }}>Manager</option>
+                                        <option value="CASHIER" {{ ($employee->position == 'CASHIER')? 'selected' : '' }}>Cashier</option>
+                                        <option value="OWNER" {{   ($employee->position == 'OWNER')? 'selected' : '' }}>Owner</option>
                                     </select>
                                 </div>
                             </div>
@@ -134,7 +136,11 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-default">Save Changes</button>
-                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
+                                    @if(session('message'))
+                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">View Employee List</a>
+                                    @else
+                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
+                                    @endif
                                 </div>
                             </div>
                         </form>

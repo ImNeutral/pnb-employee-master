@@ -35,6 +35,15 @@
                             <form action="{{ url('/employee/schedule/' . $employee_id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
+
+                                @if(session('message'))
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-right: 20px; margin-top: 10px;"><span aria-hidden="true">&times;</span></button>
+                                        <p>{{ session('message') }}</p>
+                                    </div>
+                                @endif
+
+
                                 <dl class="dl-horizontal">
                                     <dt>Monday</dt>
                                     <dd id="monday">
@@ -48,7 +57,7 @@
                                             Afternoon:
                                             <input type="time" name="mondayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $monday->day_afternoon_from }}">
                                             To
-                                            <input type="time" name="mondayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $monday->day_afternoon_to }}">
+                                            <input type="time" name="mondayAfternoonTo"   class="form-control"  min="12:01" max="24:00" value="{{ $monday->day_afternoon_to }}">
                                         </div>
                                     </dd>
                                     <br />
@@ -155,7 +164,11 @@
                                     <br />
 
                                     <dd>
-                                        <a href="{{ url('/schedule/') }}"><button class="btn btn-danger">Cancel</button></a>
+                                        @if(session('message'))
+                                            <a href="{{ url('/employee/schedule/' . $employee_id) }}" class="btn btn-danger">View Schedule</a>
+                                        @else
+                                            <a href="{{ url('/employee/schedule/' . $employee_id) }}" class="btn btn-danger">Cancel</a>
+                                        @endif
                                         <input type="submit" class="btn btn-info" style="margin-left: 50px;">
                                     </dd>
 

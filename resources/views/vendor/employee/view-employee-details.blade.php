@@ -51,7 +51,7 @@
                         <dd id="account_access"></dd>
                     </div>
                     <div id="no_account">
-                        <dd><strong>Employee Dont have account!</strong></dd>
+                        <dd><strong>Employee doesn't have ab account!</strong></dd>
                     </div>
 
                 </dl>

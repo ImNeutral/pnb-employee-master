@@ -218,6 +218,11 @@ class EmployeeController extends Controller
             return redirect('/employee-account/' . $employee->id . '/edit')->with(['message' => 'Successfully Saved Changes!']);
         } else {
             Validator::make($request->all(), Account::validationRule(), Account::validationMessage())->validate();
+
+            $this->validate($request, [
+                'username' => 'required|unique:accounts,username',
+            ]);
+
             $account = new Account;
             $account->username = $request->input('username');
             $account->password = bcrypt($request->input('password'));
@@ -226,6 +231,7 @@ class EmployeeController extends Controller
             $this->insertAccessType($account, $request->input('account_access'));
             return redirect('/employee-account/' . $employee->id . '/edit')->with(['message' => 'Successfully created employee account!']);
         }
+
     }
 
     public function getChangePasswordCode($employee_id){

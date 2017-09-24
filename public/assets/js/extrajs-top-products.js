@@ -5,7 +5,6 @@ $(document).ready(function() {
     $year       = $('#year');
     $month      = $('#month');
     $day        = $('#day');
-    $print      = $('#print');
     urlPrefix   = 'top-products';
 
 
@@ -13,29 +12,43 @@ $(document).ready(function() {
         $month.val(0);
         $day.val(0);
         $day.addClass('hidden');
-        $print.addClass('hidden');
+        // $print.addClass('hidden');
 
-        yearTopProducts($year.val());
+        // yearTopProducts($year.val());
     });
 
     $month.change(function(){
+        $day.removeClass('hidden');
         setDaysValue($year.val(), $month.val());
-        monthTopProducts( $year.val(), $month.val() );
+        // monthTopProducts( $year.val(), $month.val() );
 
     });
 
-    $day.change(function(){
-        dayTopProducts($year.val(), $month.val(), $day.val());
-    });
-
-    yearTopProducts($year.val());
+    // $day.change(function(){
+    //     dayTopProducts($year.val(), $month.val(), $day.val());
+    // });
 
 });
 
+function viewTopProducts(){
+    year = $year.val();
+    month = $month.val();
+    day = $day.val();
+
+    if( year && month && day ) {
+        dayTopProducts(year, month, day);
+    } else if( year && month ) {
+        monthTopProducts( year, month );
+    } else {
+        yearTopProducts(year);
+    }
+}
+
+
 function setDaysValue(year, month){
-    daysVal     = [31,( (year%4 > 0)? 28: 29 ),31,30,31,30,31,31,30,31,30,31];
+    daysVal     = [31,( (year%4 > 0)? 28: 29 ), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     $day.find('option').remove();
-    $day.append('<option value="0" selected>-- Select Day --</option>')
+    $day.append('<option selected disabled>-- Select Day --</option>')
     for(i = 1; i <= daysVal[month-1]; i++) {
         $day.append('<option value="' + i + '">' + i + '</option>')
     }
@@ -46,9 +59,9 @@ function emptyGraph(){
 }
 
 function yearTopProducts(year){
-    emptyGraph();
 
     $('#head').html(year);
+    pleaseWait();
 
     $.ajax({
         type: 'GET',
@@ -76,6 +89,7 @@ function yearTopProducts(year){
                 arrayData.push(toBePushed);
             }
 
+            emptyGraph();
             Morris.Bar({
                 element: 'graph',
                 data: arrayData,
@@ -94,11 +108,10 @@ function yearTopProducts(year){
 
 
 function monthTopProducts(year, month){
-    emptyGraph();
     monthsVal = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     $('#head').html(year  + ' - ' + monthsVal[month]);
-
+    pleaseWait();
 
     $.ajax({
         type: 'GET',
@@ -116,9 +129,9 @@ function monthTopProducts(year, month){
             }
 
             if(arrayDataMonth.length > 0){
-                $day.val(0);
                 $day.removeClass('hidden');
 
+                emptyGraph();
                 Morris.Bar({
                     element: 'graph',
                     data: arrayDataMonth,
@@ -130,7 +143,6 @@ function monthTopProducts(year, month){
                 });
             } else {
                 $day.addClass('hidden');
-                $print.addClass('hidden');
                 $('#graph').html('No Sales on ' + year + ' - ' + monthsVal[month]);
             }
         },
@@ -142,11 +154,10 @@ function monthTopProducts(year, month){
 }
 
 function dayTopProducts(year, month, day){
-    emptyGraph();
     monthsVal   = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     $('#head').html(year  + ' - ' + monthsVal[month] + ' - ' + day);
-
+    pleaseWait();
     $.ajax({
         type: 'GET',
         url: urlPrefix + '/topProductsForDay?year=' + year + '&month=' + month + '&day=' + day,
@@ -164,7 +175,7 @@ function dayTopProducts(year, month, day){
             }
 
             if(arrayDataDay.length > 0){
-                $print.removeClass('hidden');
+                emptyGraph();
                 Morris.Bar({
                     element: 'graph',
                     data: arrayDataDay,
@@ -184,12 +195,17 @@ function dayTopProducts(year, month, day){
     });
 }
 
+function pleaseWait(){
+    $('#graph').html('Please wait...');
+}
+
 function printThisDay(){
     year    = $year.val();
     month   = $month.val();
     day     = $day.val();
 
     $printContent = $('#printContent');
+    $printContent.removeClass('hidden');
     $('#topProductsTablePrint tbody').empty();
 
     $.ajax({

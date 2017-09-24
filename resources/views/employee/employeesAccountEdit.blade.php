@@ -161,7 +161,11 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-default">Save Changes</button>
-                                    <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
+                                    @if(session('message'))
+                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">View Employee List</a>
+                                    @else
+                                        <a class="btn btn-danger col-sm-offset-1" href="{{ url('/employee') }}">Back</a>
+                                    @endif
                                 </div>
                             </div>
                         </form>

@@ -36,6 +36,9 @@
                             <li><a href="{{ url('/top-products') }}">
                                     Top Products</a>
                             </li>
+                            <li ><a href="{{ url('/sales-print') }}">
+                                    Sales Report</a>
+                            </li>
                         </ul>
                     </div>
 

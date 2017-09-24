@@ -26,7 +26,7 @@ Route::get('/employee-account/getChangePasswordCode/{employee_id}', 'EmployeeCon
 Route::resource('/employee',                                        'EmployeeController');
 Route::resource('/employee/schedule',                                'ScheduleController');
 Route::get('/employee/search',                                      'EmployeeController@search');
-
+Route::get('/sales-print',                                          'OrderController@salesPrint');
 
 Route::group(['prefix' => 'sales'], function () {
     Route::get('/', function ()    { return view('sales.sales'); });
