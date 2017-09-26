@@ -161,10 +161,11 @@
                                     <div class="col-sm-3">
                                         <select class="form-control" id="position" name="position"  required>
                                             <option selected disabled>-- Please Select --</option>
-                                            <option value="WAITER"  {{ (old('position') == 'WAITER')? 'selected' : '' }}>Waiter</option>
-                                            <option value="MANAGER" {{ (old('position') == 'MANAGER')? 'selected' : '' }}>Manager</option>
-                                            <option value="CASHIER" {{ (old('position') == 'CASHIER')? 'selected' : '' }}>Cashier</option>
                                             <option value="OWNER" {{ (old('position') == 'OWNER')? 'selected' : '' }}>Owner</option>
+                                            <option value="MANAGER" {{ (old('position') == 'MANAGER')? 'selected' : '' }}>Manager</option>
+                                            <option value="WAITER"  {{ (old('position') == 'WAITER')? 'selected' : '' }}>Waiter</option>
+                                            <option value="CASHIER" {{ (old('position') == 'CASHIER')? 'selected' : '' }}>Cashier</option>
+                                            <option value="DISPATCHER" {{ (old('position') == 'DISPATCHER')? 'selected' : '' }}>Dispatcher</option>
                                         </select>
                                     </div>
                                 </div>

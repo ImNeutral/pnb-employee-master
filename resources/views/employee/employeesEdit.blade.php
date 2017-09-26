@@ -116,10 +116,11 @@
                                 <label for="position" class="col-sm-2 control-label">Position</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" id="position" name="position" >
-                                        <option value="WAITER" {{  ($employee->position == 'WAITER')? 'selected' : '' }}>Waiter</option>
-                                        <option value="MANAGER" {{ ($employee->position == 'MANAGER')? 'selected' : '' }}>Manager</option>
-                                        <option value="CASHIER" {{ ($employee->position == 'CASHIER')? 'selected' : '' }}>Cashier</option>
-                                        <option value="OWNER" {{   ($employee->position == 'OWNER')? 'selected' : '' }}>Owner</option>
+                                        <option value="OWNER" {{   ($employee->position == 'Owner')? 'selected' : '' }}>Owner</option>
+                                        <option value="MANAGER" {{ ($employee->position == 'Manager')? 'selected' : '' }}>Manager</option>
+                                        <option value="WAITER" {{  ($employee->position == 'Waiter')? 'selected' : '' }}>Waiter</option>
+                                        <option value="CASHIER" {{ ($employee->position == 'Cashier')? 'selected' : '' }}>Cashier</option>
+                                        <option value="DISPATCHER" {{ ($employee->position == 'Dispatcher')? 'selected' : '' }}>Dispatcher</option>
                                     </select>
                                 </div>
                             </div>

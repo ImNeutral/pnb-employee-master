@@ -75,7 +75,7 @@
                                     <br />
                                     <br />
                                     <!-- Tab panes -->
-                                    <i style="font-size: 14px;">You are trying to look for <strong>{{ $_GET['search'] }}"</strong></i>
+                                    <i style="font-size: 14px;">You are trying to look for <strong>"{{ $_GET['search'] }}"</strong></i>
                                     <br />
                                     <i style="font-size: 14px;">Found <strong>{{ $count }}</strong> result(s) </i>
                                     <br />

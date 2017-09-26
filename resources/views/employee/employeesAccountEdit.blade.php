@@ -66,7 +66,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-2">
-                                        <a href="#" id="change-password"><u>Get Change Password Code</u></a>
+                                        <a href="#" id="change-password"><u>Generate 'Forgot Password' Code</u></a>
                                         <p id="change-password-code" class="hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please wait....</p>
                                     </div>
                                 </div>
@@ -86,21 +86,30 @@
                                 <div class="form-group">
                                     <label for="last-name" class="col-sm-2 control-label">Account Access</label>
                                     <div class="col-sm-8 col-sm-offset-2">
-                                        <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }} ">
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }}  toggleButtonsRadius">
                                             <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ isset($accessType) && in_array('employee', $accessType)? 'checked' : '' }}>
                                             EMPLOYEE
                                         </label>
-                                        <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }} ">
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }}  toggleButtonsRadius">
                                             <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ isset($accessType) && in_array('inventory', $accessType)? 'checked' : '' }}>
                                             INVENTORY
                                         </label>
-                                        <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }} ">
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }}  toggleButtonsRadius">
                                             <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ isset($accessType) && in_array('waiter', $accessType)? 'checked' : '' }}>
                                             WAITER
+                                        </label>
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('cashier', $accessType)? 'active' : '' }}  toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="cashier" {{ isset($accessType) && in_array('cashier', $accessType)? 'checked' : '' }}>
+                                            CASHIER
+                                        </label>
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('dispatcher', $accessType)? 'active' : '' }}  toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="dispatcher" {{ isset($accessType) && in_array('dispatcher', $accessType)? 'checked' : '' }}>
+                                            DISPATCHER
                                         </label>
                                     </div>
                                 </div>
                             @endif
+
                             @if($newAccount == '1')
                                 <div class="form-group">
                                     <label for="username" class="col-sm-2 control-label">Username</label>
@@ -137,20 +146,27 @@
                                 <div class="form-group">
                                     <label for="last-name" class="col-sm-2 control-label">Account Access</label>
                                     <div class="col-sm-8">
-                                        <div data-toggle="buttons">
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('employee', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ old('account_access') && in_array('employee', old('account_access'))? 'checked' : '' }}>
-                                                EMPLOYEE
-                                            </label>
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('inventory', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ old('account_access') && in_array('inventory', old('account_access'))? 'checked' : '' }}>
-                                                INVENTORY
-                                            </label>
-                                            <label class="btn btn-primary {{ old('account_access') && in_array('waiter', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ old('account_access') && in_array('waiter', old('account_access'))? 'checked' : '' }}>
-                                                WAITER
-                                            </label>
-                                        </div>
+                                        <label class="btn btn-primary {{ old('account_access') && in_array('employee', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ old('account_access') && in_array('employee', old('account_access'))? 'checked' : '' }}>
+                                            EMPLOYEE
+                                        </label>
+                                        <label class="btn btn-primary {{ old('account_access') && in_array('inventory', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ old('account_access') && in_array('inventory', old('account_access'))? 'checked' : '' }}>
+                                            INVENTORY
+                                        </label>
+                                        <label class="btn btn-primary {{ old('account_access') && in_array('waiter', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ old('account_access') && in_array('waiter', old('account_access'))? 'checked' : '' }}>
+                                            WAITER
+                                        </label>
+                                        <label class="btn btn-primary {{ old('account_access') && in_array('cashier', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="cashier" {{ old('account_access') && in_array('cashier', old('account_access'))? 'checked' : '' }}>
+                                            CASHIER
+                                        </label>
+                                        <label class="btn btn-primary {{ old('account_access') && in_array('dispatcher', old('account_access'))? 'active' : '' }} toggleButtonsRadius">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="dispatcher" {{ old('account_access') && in_array('dispatcher', old('account_access'))? 'checked' : '' }}>
+                                            DISPATCHER
+                                        </label>
+
                                     </div>
                                 </div>
                             @endif
@@ -198,7 +214,7 @@
                 url : '/employee-account/getChangePasswordCode/' + {{ $account->employee_id }},
                 type: 'GET',
                 success: function (response) {
-                    $changePasswordCode.html('Use this code: ' + response['code']);
+                    $changePasswordCode.html('Use code: ' + response['code']);
                 },
                 error: function (response) {
                 }
