@@ -1,7 +1,7 @@
 @extends('includes.dashboard-header')
 @include('vendor.employee.view-employee-details')
 @section('title')
-    Sales Analytics | Top Products
+    Sales Analytics | Sales Report
 @endsection
 @section('extrastyle')
     <link href="{{ asset('assets/css/extrastyle-print-sales.css') }}" rel="stylesheet" />
@@ -22,7 +22,7 @@
                                 <h4 class="title">Sales</h4>
                                 <ol class="breadcrumb">
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li class="active">Top Products</li>
+                                    <li class="active">Sales Report</li>
                                 </ol>
                             </div>
                         </div>

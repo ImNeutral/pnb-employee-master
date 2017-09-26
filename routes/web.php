@@ -24,7 +24,7 @@ Route::get( '/employee-account/{employee_id}/edit',                 'EmployeeCon
 Route::put('/employee-account/{employee_id}',                       'EmployeeController@accountUpdate');
 Route::get('/employee-account/getChangePasswordCode/{employee_id}', 'EmployeeController@getChangePasswordCode');
 Route::resource('/employee',                                        'EmployeeController');
-Route::resource('/employee/schedule',                                'ScheduleController');
+Route::resource('/employee/schedule',                               'ScheduleController');
 Route::get('/employee/search',                                      'EmployeeController@search');
 Route::get('/sales-print',                                          'OrderController@salesPrint');
 

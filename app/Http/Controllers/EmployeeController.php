@@ -25,11 +25,17 @@ class EmployeeController extends Controller
             $key = '1';
         } elseif($key == 'inactive') {
             $key = '0';
-        } else {
+        } elseif($key == 'all') {
             $key = 'all';
+        } else {
+            $key = 'none';
         }
 
-        if($key == 'all'){
+        if($key == 'none'){
+            $count = 0;
+            $employees = [];
+
+        } elseif($key == 'all'){
             $count      = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)
                 ->count();
             $employees  = Employee::where(DB::raw("CONCAT(first_name, middle_name, last_name)"), 'like', $search)

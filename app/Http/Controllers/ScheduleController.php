@@ -114,6 +114,7 @@ class ScheduleController extends Controller
 
     public function getEmployeeSchedule($employee_id, $dayName){
         $day         = Schedule::firstOrNew(['employee_id' => $employee_id, 'day' => $dayName]);
+
         return $day;
     }
 
@@ -121,26 +122,25 @@ class ScheduleController extends Controller
 
         $day    = Schedule::where(['employee_id' => $employee_id, 'day' => $dayName])->first();
 
-        if($day != null) {
-            $day->day_morning_from      = $request->input( $this->getFullDayName($dayName, 'MorningFrom') );
-            $day->day_morning_to        = $request->input( $this->getFullDayName($dayName, 'MorningTo') );
-            $day->day_afternoon_from    = $request->input( $this->getFullDayName($dayName, 'AfternoonFrom') );
-            $day->day_afternoon_to      = $request->input( $this->getFullDayName($dayName, 'AfternoonTo') );
-            $day->save();
+        if( $day ) {
+            Schedule::where(['day' => $dayName, 'employee_id' => $employee_id])
+                    ->update([
+                        'day_morning_from'      => $request->input( $dayName . 'MorningFrom' ),
+                        'day_morning_to'        => $request->input( $dayName . 'MorningTo' ),
+                        'day_afternoon_from'    => $request->input( $dayName . 'AfternoonFrom' ),
+                        'day_afternoon_to'      => $request->input( $dayName . 'AfternoonTo' )
+                    ]);
         } else {
-            $dayNew = new Schedule;
-            $dayNew->employee_id           = $employee_id;
-            $dayNew->day                   = $dayName;
-            $dayNew->day_morning_from      = $request->input( $this->getFullDayName($dayName, 'MorningFrom') );
-            $dayNew->day_morning_to        = $request->input( $this->getFullDayName($dayName, 'MorningTo') );
-            $dayNew->day_afternoon_from    = $request->input( $this->getFullDayName($dayName, 'AfternoonFrom') );
-            $dayNew->day_afternoon_to      = $request->input( $this->getFullDayName($dayName, 'AfternoonTo') );
-            $dayNew->save();
-        }
-    }
+            Schedule::insert([
+                    'employee_id'           => $employee_id,
+                    'day'                   => $dayName,
+                    'day_morning_from'      => $request->input( $dayName . 'MorningFrom' ),
+                    'day_morning_to'        => $request->input( $dayName . 'MorningTo' ),
+                    'day_afternoon_from'    => $request->input( $dayName . 'AfternoonFrom' ),
+                    'day_afternoon_to'      => $request->input( $dayName . 'AfternoonTo' )
+                ]);
 
-    function getFullDayName($dayName, $dayTimeName){
-        return $dayName . $dayTimeName;
+        }
     }
 
     public function destroy($id)

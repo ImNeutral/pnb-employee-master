@@ -124,7 +124,7 @@
                                             Afternoon:
                                             <input type="time" name="fridayAfternoonFrom" class="form-control"  min="12:01" max="24:00" value="{{ $friday->day_afternoon_from }}">
                                             To
-                                            <input type="time" name="fridayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $friday->day_morning_to }}">
+                                            <input type="time" name="fridayAfternoonTo" class="form-control"  min="12:01" max="24:00" value="{{ $friday->day_afternoon_to }}">
                                         </div>
                                     </dd>
                                     <br />

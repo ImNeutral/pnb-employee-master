@@ -80,25 +80,24 @@
                                             <option value="0" {{ $account->active=='0'? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </div>
-                                </div>
 
+                            
+                            
                                 <div class="form-group">
                                     <label for="last-name" class="col-sm-2 control-label">Account Access</label>
-                                    <div class="col-sm-8">
-                                        <div data-toggle="buttons">
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ isset($accessType) && in_array('employee', $accessType)? 'checked' : '' }}>
-                                                EMPLOYEE
-                                            </label>
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ isset($accessType) && in_array('inventory', $accessType)? 'checked' : '' }}>
-                                                INVENTORY
-                                            </label>
-                                            <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }} toggleButtonsRadius">
-                                                <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ isset($accessType) && in_array('waiter', $accessType)? 'checked' : '' }}>
-                                                WAITER
-                                            </label>
-                                        </div>
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('employee', $accessType)? 'active' : '' }} ">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="employee" {{ isset($accessType) && in_array('employee', $accessType)? 'checked' : '' }}>
+                                            EMPLOYEE
+                                        </label>
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('inventory', $accessType)? 'active' : '' }} ">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="inventory" {{ isset($accessType) && in_array('inventory', $accessType)? 'checked' : '' }}>
+                                            INVENTORY
+                                        </label>
+                                        <label class="btn btn-primary {{ isset($accessType) && in_array('waiter', $accessType)? 'active' : '' }} ">
+                                            <input type="checkbox" autocomplete="off" name="account_access[]" value="waiter" {{ isset($accessType) && in_array('waiter', $accessType)? 'checked' : '' }}>
+                                            WAITER
+                                        </label>
                                     </div>
                                 </div>
                             @endif

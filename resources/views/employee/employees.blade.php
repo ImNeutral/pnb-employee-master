@@ -54,11 +54,11 @@
                                 <li style="margin-right: 20px;">
                                     <a href="{{ url('/employee/create') }}" style="padding-top: 0px;">
                                     <button class="btn btn-default tooltip-employee glyphicon-plus" id="view-details" data-placement="top" title="Add New Employee">
-                                        <span class="glyphicon glyphicon-user" ></span>
+                                        Add New
                                     </button>
                                     </a>
                                 </li>
-                                <li class="{{ !isset($_GET['key'])? 'active' : '' }} {{ isset($_GET['key']) && $_GET['key']!='active' && $_GET['key']!='inactive'? 'active' : '' }}"><a href="{{ url('employee/?page=1&search=&key=all') }}" >
+                                <li class="{{ isset($_GET['key']) && $_GET['key']=='all'? 'active' : ''  }}"><a href="{{ url('employee/?page=1&search=&key=all') }}" >
                                         All Employees</a>
                                 </li>
                                 <li class="{{ isset($_GET['key']) && $_GET['key']=='active'? 'active' : ''  }}"><a href="{{ url('employee/?page=1&search=&key=active') }}">
@@ -143,7 +143,7 @@
                                                 </tr>
                                             @endforeach
 
-                                            @if($count <= 0)
+                                            @if($count <= 0 && isset($_GET['key']) && ($_GET['key'] == 'active' || $_GET['key'] == 'inactive' || $_GET['key'] == 'all') )
                                                 <tr class="text-center"><td colspan="6">No employees found.</td></tr>
                                             @endif
 
@@ -152,17 +152,43 @@
                                     </table>
                             </div>
 
+                            {{--@if($count > 0)--}}
+                            {{--<ul class="btn-group btn-group-xs" role="group" aria-label="...">--}}
+                                {{--<a class="btn btn-default" href="{{ $currentPage == '1'? '#' : url('employee/?page=' . ($currentPage-1) . $getInputs) }}" {{ $isFirstPage  }} data-toggle="tooltip" data-placement="top" title="Previous Page"><</a>--}}
+                                {{--@for($roll = 1; $roll <= $allPages; $roll++)--}}
+                                    {{--<a type="button" class="btn btn-default" href="{{ $currentPage == $roll? '#' : url('employee/?page=' . ($roll) . $getInputs ) }}" {{ $currentPage == $roll? 'disabled' : ''}} data-toggle="tooltip" data-placement="top" title="Page {{ $roll }}">{{ $roll }}</a>--}}
+                                {{--@endfor--}}
+                                {{--<a class="btn btn-default" href="{{ $isLastPage == 'disabled'? '#' : url('employee/?page=' . ($currentPage + 1)  . $getInputs) }}" {{ $isLastPage  }} data-toggle="tooltip" data-placement="top" title="Next Page">></a>--}}
+                                {{--<br />--}}
+                                {{--<br />--}}
+                                {{--<p style="font-size: 12px;">Showing {{ $entriesFrom }} to {{  $counter-1 }} of {{ $count }} employee(s)</p>--}}
+                            {{--</ul>--}}
+                            {{--@endif--}}
+
                             @if($count > 0)
-                            <ul class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <a class="btn btn-default" href="{{ $currentPage == '1'? '#' : url('employee/?page=' . ($currentPage-1) . $getInputs) }}" {{ $isFirstPage  }} data-toggle="tooltip" data-placement="top" title="Previous Page"><</a>
-                                @for($roll = 1; $roll <= $allPages; $roll++)
-                                    <a type="button" class="btn btn-default" href="{{ $currentPage == $roll? '#' : url('employee/?page=' . ($roll) . $getInputs ) }}" {{ $currentPage == $roll? 'disabled' : ''}} data-toggle="tooltip" data-placement="top" title="Page {{ $roll }}">{{ $roll }}</a>
-                                @endfor
-                                <a class="btn btn-default" href="{{ $isLastPage == 'disabled'? '#' : url('employee/?page=' . ($currentPage + 1)  . $getInputs) }}" {{ $isLastPage  }} data-toggle="tooltip" data-placement="top" title="Next Page">></a>
-                                <br />
-                                <br />
-                                <p style="font-size: 12px;">Showing {{ $entriesFrom }} to {{  $counter-1 }} of {{ $count }} employee(s)</p>
-                            </ul>
+                            <div class="pagination-container text-center">
+                                <ul class="pagination pagination-primary">
+                                    <li class="page-item arrow-margin-left {{ $isFirstPage }}">
+                                        <a class="page-link" href="{{ $currentPage == '1'? '#' : url('employee/?page=' . ($currentPage-1) . $getInputs) }}" aria-label="Previous">
+                                            <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+
+                                    @for($roll = 1; $roll <= $allPages; $roll++)
+                                    <li class="page-item {{ $currentPage == $roll? 'active' : ''}}">
+                                        <a class="page-link" href="{{ $currentPage == $roll? '#' : url('employee/?page=' . ($roll) . $getInputs ) }}">
+                                            <span>{{ $roll }}</span>
+                                        </a>
+                                    </li>
+                                    @endfor
+
+                                    <li class="page-item arrow-margin-right {{ $isLastPage }}">
+                                        <a class="page-link" href="{{ $isLastPage == 'disabled'? '#' : url('employee/?page=' . ($currentPage + 1)  . $getInputs) }}" aria-label="Next">
+                                            <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                             @endif
 
                         </div>
